@@ -1,0 +1,6 @@
+[submodule "fsp"]
+	path = fsp
+	url = https://github.com/intel/FSP.git
+[submodule "opensil"]
+	path = opensil
+	url = https://github.com/openSIL/openSIL.git
