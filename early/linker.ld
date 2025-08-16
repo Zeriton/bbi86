@@ -1,11 +1,10 @@
 OUTPUT_FORMAT("binary")
-ENTRY(_start)
 
 SECTIONS {
-	. = 0xF0000;
+	. = 0xF0100;
 	
 	.text : {
-		PROVIDE(__pentry_addr = _pentry);
+		*(.entry)
 		*(.text)
 	}
 
