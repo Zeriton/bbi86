@@ -3,7 +3,7 @@ Modern 32-bit+ x86 firmware, designed to replace both UEFI &amp; BIOS
 
 > [!WARNING]
 > **bb86** is currently an *experimental* project that is currently \
-> focussing on AMD server systems that support **openSIL**
+> focusing on AMD server systems that support **openSIL**
 
 # Goals
 - *Forcefully* modernize x86: will promote FDTs, hide away older x86 features..
