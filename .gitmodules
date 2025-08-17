@@ -1,6 +1,6 @@
-[submodule "fsp"]
-	path = fsp
-	url = https://github.com/intel/FSP.git
-[submodule "opensil"]
-	path = opensil
-	url = https://github.com/openSIL/openSIL.git
+[submodule "si/intel-fsp"]
+	path = si/intel-fsp
+	url = https://github.com/Zeriton/intel-fsp.git
+[submodule "si/amd-opensil"]
+	path = si/amd-opensil
+	url = https://github.com/Zeriton/amd-opensil.git
