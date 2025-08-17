@@ -12,7 +12,12 @@ EARLY_ASM_OBJECTS := $(patsubst %.asm, $(BUILD_DIR)/early/%.o, $(EARLY_ASM_SOURC
 EARLY_C_SOURCES := entry.c
 EARLY_C_OBJECTS := $(patsubst %.c, $(BUILD_DIR)/early/%.o, $(EARLY_C_SOURCES))
 
-EARLY_C_FLAGS = -Wall -Wextra -DUART_BASE_ADDRESS=$(UART_BASE_ADDRESS) -DUART_IS_MMIO=$(UART_IS_MMIO)
+EARLY_C_FLAGS = -Wall \
+				-Wextra \
+				-ffreestanding \
+				-fno-pic \
+				-DUART_BASE_ADDRESS=$(UART_BASE_ADDRESS) \
+				-DUART_IS_MMIO=$(UART_IS_MMIO)
 EARLY_LD_FLAGS = -Tlinker.ld
 
 build: $(BUILD_DIR)/bbi86-early.bin
