@@ -1,0 +1,9 @@
+root = true
+
+[*.{asm,c,s}]
+indent_style = space
+indent_size = 4
+
+[{Makefile,Makefile.*,Kconfig,Kbuild}]
+indent_style = tab
+indent_size = 8

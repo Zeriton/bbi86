@@ -1,22 +1,14 @@
 OUTPUT_FORMAT("binary")
 
 SECTIONS {
-	. = 0xF0100;
-	
-	.text : {
-		*(.entry)
-		*(.text)
-	}
+	. = FIRMWARE_START; /* To be defined by the build system */
 
-	.bss : {
-		*(.bss)
+	.text : {
+		*(.text.head)
+		*(.text)
 	}
 
 	.rodata : {
 		*(.rodata)
-	}
-
-	.data : {
-		*(.data)
 	}
 }
