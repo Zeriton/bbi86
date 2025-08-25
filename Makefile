@@ -11,8 +11,9 @@ BBI86_ROM_START = 0xFFFF0000
 IMAGE_SIZE = $$((0xFFFFFFF0 - $(BBI86_ROM_START)))
 
 BUILD_TARGETS = boot firm
+PHONY = all clean firm-image
 
-.PHONY: all clean firm-image $(BUILD_TARGETS)
+.PHONY: $(PHONY) $(BUILD_TARGETS)
 
 all: $(BUILD_TARGETS) firm-image
 
@@ -23,12 +24,17 @@ firm-image: $(BUILD_TARGETS)
 	dd if=$(BUILD_DIR)/firm/firm.bin of=$(BUILD_DIR)/bbi86.rom.bin bs=1 seek=256 conv=notrunc
 
 $(BUILD_TARGETS):
-	$(MAKE) -C $@					\
-		CROSS_TOOLCHAIN=$(CROSS_TOOLCHAIN)	\
-		CC=$(CC)				\
-		LD=$(LD)				\
-		BUILD_DIR=$(BUILD_DIR)			\
+	$(MAKE) -C $@						\
+		CROSS_TOOLCHAIN=$(CROSS_TOOLCHAIN)		\
+		CC=$(CC)					\
+		LD=$(LD)					\
+		BUILD_DIR=$(BUILD_DIR)				\
 		BBI86_ROM_START=$(BBI86_ROM_START)
+
+KCONFIG_SOURCE_DIR = $(abspath ./scripts/kconfig)
+KCONFIG_OUTPUT_DIR = $(BUILD_DIR)
+KCONFIG_CONFIG_PATH = $(abspath ./Kconfig)
+include scripts/kconfig/Makefile.include 
 
 clean:
 	rm -r $(BUILD_DIR)

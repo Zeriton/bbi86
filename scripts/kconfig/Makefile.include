@@ -1,0 +1,19 @@
+ifndef KCONFIG_SOURCE_DIR
+$(error `KCONFIG_SOURCE_DIR` must be set/defined.)
+endif
+
+KCONFIG_BIN_DIR := $(KCONFIG_SOURCE_DIR)/bin
+
+PHONY += menuconfig editconfig
+
+menuconfig: $(KCONFIG_BIN_DIR)/menuconfig
+	$< $(KCONFIG_CONFIG_PATH) -o $(KCONFIG_OUTPUT_DIR)
+
+$(KCONFIG_BIN_DIR)/menuconfig:
+	$(MAKE) $@ -C $(KCONFIG_SOURCE_DIR) BIN_DIR=$(KCONFIG_BIN_DIR) OUT_DIR=$(KCONFIG_OUTPUT_DIR)
+
+editconfig: $(KCONFIG_BIN_DIR)/editconfig
+	$< $(KCONFIG_CONFIG_PATH) -o $(KCONFIG_OUTPUT_DIR)
+
+$(KCONFIG_BIN_DIR)/editconfig:
+	$(MAKE) $@ -C $(KCONFIG_SOURCE_DIR) BIN_DIR=$(KCONFIG_BIN_DIR) OUT_DIR=$(KCONFIG_OUTPUT_DIR)
