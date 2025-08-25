@@ -4,7 +4,7 @@ OUT_DIR ?= out
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS =
 
-KCONFIG_C_SOURCES = lexer.c parser.c
+KCONFIG_C_SOURCES = types.c lexer.c parser.c
 KCONFIG_C_OBJECTS = $(patsubst %.c, $(BIN_DIR)/deps/%.o, $(KCONFIG_C_SOURCES))
 
 $(BIN_DIR)/menuconfig: $(BIN_DIR)/deps/menuconfig.o $(KCONFIG_C_OBJECTS) 

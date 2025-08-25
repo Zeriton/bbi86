@@ -1,1 +1,5 @@
 mainmenu "bbi86 Configuration"
+	
+config FIRMWARE_ROM_ADDRESS
+	hex "Firmware ROM Address"
+	default 0xFFFF0000
