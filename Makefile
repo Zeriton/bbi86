@@ -4,6 +4,9 @@ LD ?= ld
 override CC := $(CROSS_TOOLCHAIN)$(CC)
 override LD := $(CROSS_TOOLCHAIN)$(LD)
 
+export CFLAGS = -std=c99 -Werror -Wall -Wextra
+export LDFLAGS =
+
 BUILD_DIR ?= build
 override BUILD_DIR := $(abspath $(BUILD_DIR))
 

@@ -1,8 +1,8 @@
 BIN_DIR ?= bin
 OUT_DIR ?= out
 
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS =
+CFLAGS +=
+LDFLAGS +=
 
 KCONFIG_C_SOURCES = types.c lexer.c parser.c
 KCONFIG_C_OBJECTS = $(patsubst %.c, $(BIN_DIR)/deps/%.o, $(KCONFIG_C_SOURCES))
