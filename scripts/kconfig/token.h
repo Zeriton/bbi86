@@ -24,8 +24,8 @@ typedef enum {
 } kconfig_token_type_t;
 
 typedef struct {
-    KCONFIG_FAT_POINTER(char) value;
     kconfig_token_type_t type;
+    KCONFIG_FAT_POINTER(char) value;
 } kconfig_token_t;
 
 #endif /* __BBI86_SCRIPTS_KCONFIG_TOKEN_H */
