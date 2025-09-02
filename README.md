@@ -5,10 +5,28 @@ Modern 32-bit+ x86 firmware, designed to replace both UEFI &amp; BIOS
 > **bbi86** is currently an *experimental* project that is currently \
 > focusing on AMD server systems that support **openSIL**
 
-# Goals
-- *Forcefully* modernize x86: will promote FDTs, hide away older x86 features..
-- Handing the payload most power, no more splash screens, no firmware GUI.. all controlled by the payload.
-- Modular, the [`early/`](early) stage will be ROM only (non-modular), but the core firmware will be stored on disk. This
-  allows the use of `Modules` that vendors or whoever can add.
-- No unnecessary I/O initialization & use by default: absolutely no VGA, no special I/O devices. **ONLY UART** \
-...
+## Build Guide
+To build **bbi86** there is a few but limited options. It is recommended \
+for you to use the 'world' target as that'll build everything necessary.
+```bash
+$ make world
+```
+#### BUT WAIT!
+You might encounter a missing '.config' error, well to fix that \
+simply use the 'menuconfig' target, or 'defconfig' for a very simple configuration.
+```bash
+$ make menuconfig
+```
+Now, you have basically built **bbi86**, but lets say you need a read-to-go \
+image, well that's pretty simple as we luckily have the 'image' target \
+exactly for that situation.
+```bash
+$ make image
+```
+### Useful Build Options
+- TOOLCHAIN: the toolchain to use, only supports 'gnu' & 'llvm'
+  - gnu (gcc, ld, as)
+      - CROSS_COMPILER: cross compiler prefix, by default uses 'i686-elf-'
+  - llvm (clang, ld.lld)
+      - TARGET_TRIPLE: llvm target triple, by default uses 'i386-unknown-none'
+- FIRMWARE_ROM_START: the address of where the firmware image will start
