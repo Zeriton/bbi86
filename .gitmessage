@@ -1,0 +1,12 @@
+#### Summary, keep short!
+## Format
+# scope: message
+
+#### Description, keep juicy!
+
+#### Footer
+## Example
+# BREAKING CHANGE: Aaaaa!
+# refs #69
+# closes #420
+# Co-authored-by: Timothee Swindly <timotheeisbest@forevermail.com>

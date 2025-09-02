@@ -1,0 +1,11 @@
+PHONY_TARGETS += image
+
+IMAGE_SIZE := $$((0xFFFFFFF0 - $(FIRMWARE_ROM_START)))
+
+image: $(BUILD_DIR)/bbi86.rom.img
+
+$(BUILD_DIR)/bbi86.rom.img: bootstub firmware
+	dd if=/dev/zero of=$@ bs=1 count=$(IMAGE_SIZE) conv=notrunc
+	dd if=$(BUILD_DIR)/bootstub/reset.bin of=$@ bs=1 seek=$(IMAGE_SIZE) conv=notrunc
+	dd if=$(BUILD_DIR)/bootstub/boot.bin of=$@ bs=1 seek=0 conv=notrunc
+	dd if=$(BUILD_DIR)/firmware/firmware.bin of=$@ bs=1 seek=256 conv=notrunc

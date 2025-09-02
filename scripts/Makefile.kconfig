@@ -1,0 +1,22 @@
+PHONY_TARGETS              += menuconfig defconfig
+
+KCONFIG_KCONFIG            := Kconfig
+KCONFIG_DOTCONFIG          := .config
+KCONFIG_AUTOCONF_H         := include/generated/autoconf.h
+
+CFLAGS                     += -include $(KCONFIG_AUTOCONF_H)
+
+menuconfig:
+	$(PYTHON) scripts/kconfiglib/menuconfig.py $(KCONFIG_KCONFIG)
+
+defconfig:
+	$(PYTHON) scripts/kconfiglib/defconfig.py $(KCONFIG_KCONFIG)
+
+STANDALONE_GEN_TARGETS     += $(KCONFIG_AUTOCONF_H)
+$(KCONFIG_AUTOCONF_H): $(KCONFIG_DOTCONFIG)
+	mkdir -p $(dir $@)
+	$(PYTHON) scripts/kconfiglib/genconfig.py $(KCONFIG_KCONFIG) --header-path $@
+
+CLEAN_TARGETS              += clean_kconfig
+clean_kconfig:
+	rm -f $(KCONFIG_AUTOCONF_H)

@@ -1,0 +1,6 @@
+build/
+include/generated/
+
+__pycache__/
+
+*.config
