@@ -1,0 +1,23 @@
+mainmenu "bbi86 Configuration"
+
+choice
+	prompt "Select a silicon init library"
+	default AMD_OPEN_SIL
+	help
+		Silicon init is required to properly setup
+		the CPU, I/O, Memory and more..
+
+	config NONE
+		bool "None"
+		help
+			Useful for generic emulation where
+			everything is setup upon reset
+
+	config AMD_OPEN_SIL
+		bool "OpenSIL (AMD)"
+		help
+			Open-source silicon init library provided by AMD.
+			OpenSIL is very much a proof-of-concept and won't work
+			for everything and is currently still very specialised.
+
+endchoice
